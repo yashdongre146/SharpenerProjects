@@ -13,3 +13,7 @@ items[2].style.background = "green";
 items[0].style.fontWeight = "bold";
 items[1].style.fontWeight = "bold";
 items[3].style.fontWeight = "bold";
+
+//Making new changes
+var li = document.getElementsByTagName("li");
+li[4].style.background = "grey";
