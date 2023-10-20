@@ -17,3 +17,18 @@ items[3].style.fontWeight = "bold";
 //Making new changes
 var li = document.getElementsByTagName("li");
 li[4].style.background = "grey";
+
+//Making new changes
+var qitem2 = document.querySelector('list-group-item:nth-child(2)');
+qitem2.style.background = "green";
+
+var qitem3 = document.querySelector('list-group-item:nth-child(3)');
+qitem2.style.display = "none";
+
+//another deriverble
+var qaitems = document.querySelectorAll('list-group-item');
+qaitems[1].style.color = "green";
+
+for(let i = 0; i< qaitems.length;i+=2){
+  qaitems[i].style.background = "green";
+}
