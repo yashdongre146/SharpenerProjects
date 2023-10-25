@@ -125,4 +125,27 @@ form.addEventListener('submit',(e)=>{
   }
   localStorage.setItem("ls", JSON.stringify(obj));
 })
+
+// unique keys to avoid replacement 
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const form = document.getElementById('form');
+
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const obj = {
+    name : name.value,
+    email : email.value
+  }
+  for(let key in localStorage){
+    if (localStorage.hasOwnProperty(key) &&  !key.startsWith("eruda-")){
+      if (email.value === key) {
+        alert("email is already registered!");
+        return;
+      }
+    }
+  }
+  localStorage.setItem(email.value, JSON.stringify(obj));
+})
+
 */
