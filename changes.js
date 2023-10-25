@@ -148,4 +148,71 @@ form.addEventListener('submit',(e)=>{
   localStorage.setItem(email.value, JSON.stringify(obj));
 })
 
+// deleting data from UI as well as from Local Storage
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const form = document.getElementById('form');
+const items = document.getElementById('list');
+
+for (let key in localStorage) {
+  if (localStorage.hasOwnProperty(key) && !key.startsWith("eruda-")) {
+    const data = JSON.parse(localStorage.getItem(key));
+    
+    const p = document.createElement('p');
+    const li = document.createElement('li');
+    const del = document.createElement('button');
+    
+    p.appendChild(document.createTextNode(data.email));
+    
+    del.appendChild(document.createTextNode('delete'));
+    del.className = "delete";
+    
+    li.appendChild(document.createTextNode(data.name));
+    li.appendChild(p);
+    li.className = "item";
+    li.appendChild(del);
+    items.appendChild(li);
+  }
+}
+
+
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const obj = {
+    name : name.value,
+    email : email.value
+  }
+  for(let key in localStorage){
+    if (localStorage.hasOwnProperty(key) &&  !key.startsWith("eruda-")){
+      if (email.value === key) {
+        alert("email is already registered!");
+        return;
+      }
+    }
+  }
+  localStorage.setItem(email.value, JSON.stringify(obj));
+  const p = document.createElement('p');
+  const li = document.createElement('li');
+  const del = document.createElement('button');
+  
+  del.appendChild(document.createTextNode('delete'));
+  del.className = "delete";
+  
+  p.appendChild(document.createTextNode(email.value));
+  
+  li.appendChild(document.createTextNode(name.value));
+  li.appendChild(p);
+  li.className = "item";
+  li.appendChild(del);
+  items.appendChild(li);
+})
+items.addEventListener('click', (e)=>{
+  if (e.target.classList.contains('delete')) {
+    if (confirm('Are You Sure?')) {
+      var li = e.target.parentElement;
+      localStorage.removeItem(li.firstElementChild.innerText);
+      items.removeChild(li);
+    }
+  }
+});
 */
