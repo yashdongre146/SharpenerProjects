@@ -98,7 +98,7 @@ function addItem(e) {
       }
     }
   }
-*/
+
   // submit form details to local storage
   const name = document.getElementById('name');
     const email = document.getElementById('email');
@@ -109,3 +109,20 @@ function addItem(e) {
       localStorage.setItem("name", name.value);
       localStorage.setItem("email", email.value);
     })
+
+
+  // storing as object
+
+  const name = document.getElementById('name');
+const email = document.getElementById('email');
+const form = document.getElementById('form');
+
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const obj = {
+    name : name.value,
+    email : email.value
+  }
+  localStorage.setItem("ls", JSON.stringify(obj));
+})
+*/
