@@ -215,4 +215,21 @@ items.addEventListener('click', (e)=>{
     }
   }
 });
+
+// edit button
+items.addEventListener('click', (e) => {
+    if (e.target.classList.contains('edit')) {
+    if (confirm('Are You Sure?')) {
+      var li = e.target.parentElement;
+      var data = JSON.parse(localStorage.getItem(li.firstElementChild.innerText));
+      
+      // putting data in fields
+      name.value = data.name;
+      email.value = data.email;
+      
+      localStorage.removeItem(li.firstElementChild.innerText);
+      items.removeChild(li);
+    }
+  }
+});
 */
