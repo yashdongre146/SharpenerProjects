@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+
+</head>
+
+<body>
+  <form id="form" action="{{#if editUser}}/update-details{{else}}/submit-details{{/if}}" method="POST">
+    <label for="item">Item:</label>
+    <input type="text" id="item" name="item" value="{{#if editUser}}{{editUser.item}}{{/if}}" required><br><br>
+  
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" value="{{#if editUser}}{{editUser.amount}}{{/if}}" required><br><br>
+
+    {{#if editUser}}
+      <input type="hidden" value="{{editUser.id}}" name="userId">
+    {{/if}}
+    
+    {{#if editUser}}
+      <input type="submit" value="Update">
+    {{else}}
+      <input type="submit" value="Submit">
+    {{/if}}
+  </form>
+  <ul id="list">
+    {{#each users}}
+      <li>{{this.item}} {{this.amount}}</li>
+      <button onclick="window.location.href = '/edit-user/{{this.id}}'">Edit</button>
+      <button onclick="window.location.href = '/delete-user/{{this.id}}'">Delete</button>
+    {{/each}}
+  </ul>
+  <script src="main.js"></script>
+</body>
+</html>
